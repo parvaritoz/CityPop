@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     width: "80%",
     margin: "2%",
   },
-
   text: {
     color: colors.black,
     fontSize: 18,
