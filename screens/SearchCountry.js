@@ -1,13 +1,17 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
+import SearchButton from '../components/SearchButton';
 import TextButton from '../components/TextButton';
 import colors from '../config/colors';
+
 
 export default function SearchCountry(props) {
     return (
         <>
+    
             <Text style={styles.text}>SEARCH BY COUNTRY</Text>
             <TextButton placeholder="Enter a country"/>
+            <SearchButton/> 
         </>
     );
 }

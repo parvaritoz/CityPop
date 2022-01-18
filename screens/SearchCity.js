@@ -2,12 +2,14 @@ import React from 'react';
 import {Text, StyleSheet} from 'react-native';
 import TextButton from '../components/TextButton';
 import colors from '../config/colors';
+import SearchButton from '../components/SearchButton';
 
 export default function SearchCity(props) {
     return (
         <>
             <Text style={styles.text}>SEARCH BY CITY</Text>
             <TextButton placeholder="Enter a city"/>
+            <SearchButton/> 
         </>
     );
 }
