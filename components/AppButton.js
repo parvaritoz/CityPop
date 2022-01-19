@@ -20,8 +20,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   button: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.black,
+    borderColor: "#00ffff",
     borderRadius: 15,
+    borderColor: "red",
     padding: 20,
     justifyContent: "center",
     alignItems: "center",
@@ -30,7 +32,8 @@ const styles = StyleSheet.create({
     margin: "2%",
   },
   text: {
-    color: colors.black,
+    color: colors.white,
+    fontWeight: "bold",
     fontSize: 18,
     textTransform: "uppercase",
     justifyContent: "center",

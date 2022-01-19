@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import colors from '../config/colors';
 import {AntDesign} from '@expo/vector-icons';
 
-export default function SearchButton({title, onPress}) {
+export default function SearchButton({ onPress}) {
     return (
         <>
             <View style={styles.container}>
@@ -17,8 +17,11 @@ export default function SearchButton({title, onPress}) {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: "center",
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "flex-start",
         alignItems: "center",
+        marginTop: "10%",
     },
     button: {
         backgroundColor: colors.black,
@@ -28,7 +31,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         textAlign: "center",
-        marginTop: "10%",
     },
     searchIcon: {
         color: colors.white,
