@@ -9,7 +9,7 @@ export default function SearchCity(props) {
     return (
         <>
             <View style={styles.container}>
-                <BackButton/>
+                {/*<BackButton/>*/}
                 <Text style={styles.text}>SEARCH BY CITY</Text>
                 <TextButton placeholder="Enter a city"/>
                 <SearchButton/>

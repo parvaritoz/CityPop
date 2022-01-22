@@ -10,7 +10,7 @@ export default function SearchCountry(props) {
     return (
         <>
             <View style={styles.container}>
-                <BackButton/>
+                {/*<BackButton/>*/}
                 <Text style={styles.text}>SEARCH BY COUNTRY</Text> 
                 <TextButton placeholder="Enter a country"/>
                 <SearchButton onPress={()=> console.log("Search button tapped!")}/> 

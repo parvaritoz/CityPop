@@ -1,13 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import HomeScreen from "./screens/HomeScreen";
 import SearchCity from "./screens/SearchCity";
-import SearchCountry from "./screens/SearchCountry";
+import AppNavigation from './routes/homeScreenStack';
+
 
 export default function App() {
   return (
     <>
-      <SearchCity/>
+      <AppNavigation/>
     </>
   ) 
 }
