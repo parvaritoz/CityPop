@@ -2,10 +2,10 @@ import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import colors from "../config/colors";
 
-export default function TextButton({ placeholder}) {
+export default function TextButton({ placeholder, onChangeText, value }) {
   return (
     <View style={styles.conatiner}>
-      <TextInput style={styles.textInput} placeholder ={placeholder}></TextInput>
+      <TextInput style={styles.textInput} placeholder ={placeholder} onChangeText={onChangeText} value={value}></TextInput>
     </View>
   );
 }
