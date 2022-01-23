@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { HeaderBackground } from "react-navigation-stack";
 import AppButton from "../components/AppButton";
 import colors from "../config/colors";
 

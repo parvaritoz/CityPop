@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import {Text, StyleSheet, View, ActivityIndicator, Modal, Pressable} from 'react-native';
+import {Text, StyleSheet, View, Modal, Pressable} from 'react-native';
 import TextButton from '../components/TextButton';
 import BackButton from '../components/BackButton';
 import colors from '../config/colors';
 import SearchButton from '../components/SearchButton';
+import LoadingIndicator from '../components/LoadingIndicator';
 
 export default function SearchCity(props) {
 
@@ -46,7 +47,7 @@ export default function SearchCity(props) {
                 <TextButton placeholder="Enter a city" onChangeText={textValue=> setTextInput(textValue)} value={textInput}/>
                 <SearchButton onPress={()=> getAPI(textInput)}/>
                 <View>
-                    {load && <ActivityIndicator size='large' color="#000000" style={styles.isLoading}/>}
+                    {load && <LoadingIndicator/>}
                 </View>
                 <Modal
                     animationType="slide"

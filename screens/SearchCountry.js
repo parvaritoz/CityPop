@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text, StyleSheet, View, Modal, Pressable, ActivityIndicator} from 'react-native';
-import { set } from 'react-native-reanimated';
+import {Text, StyleSheet, View, Modal, Pressable} from 'react-native';
 import { useState } from 'react/cjs/react.development';
 import BackButton from '../components/BackButton';
+import LoadingIndicator from '../components/LoadingIndicator';
 import SearchButton from '../components/SearchButton';
 import TextButton from '../components/TextButton';
 import colors from '../config/colors';
@@ -31,7 +31,8 @@ export default function SearchCountry(props) {
                 setModalVisible(true);
             }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
+        .finally(()=> setLoading(false));
     }
 
     const getAPI = async (arg) => {
@@ -47,7 +48,7 @@ export default function SearchCountry(props) {
                 <TextButton placeholder="Enter a country" onChangeText={textValue=> setTextInput(textValue)} value={textInput}/>
                 <SearchButton onPress={()=> getAPI(textInput)}/>
                 <View>
-                    {load && <ActivityIndicator size='large' color="#000000" style={styles.isLoading}/>}
+                    {load && <LoadingIndicator/>}
                 </View>
                 <Modal
                     animationType="slide"
