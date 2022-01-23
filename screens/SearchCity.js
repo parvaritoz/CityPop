@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+import {Text, StyleSheet, View, ActivityIndicator, Modal, Pressable} from 'react-native';
 import TextButton from '../components/TextButton';
 import BackButton from '../components/BackButton';
 import colors from '../config/colors';
@@ -9,26 +9,32 @@ export default function SearchCity(props) {
 
     const [textInput, setTextInput] = useState('');
     const [inValidText, setInvalidText] = useState(false);
+    const [isLoading, setLoading] = useState(true);
+    const [load, setLoad] = useState(false);
 
- 
+    const [modalVisible, setModalVisible] = useState(false);
+
+    
     function fetchingCity_api(arg){
-
         setTimeout(3000);
         fetch('http://api.geonames.org/searchJSON?name=' + arg + '&featureClass=P&maxRows=1&username=weknowit')
         .then((response) => response.json())
         .then((response) => {
-            if(arg != ''){
-               console.log("City: " + response.geonames[0].toponymName + "  " + "Population: " + response.geonames[0].population);
+            setLoad(false);
+            if(response.totalResultsCount > 0 && arg != ''){
+               console.log(response.geonames[0].population);
             }
             else{
                 setInvalidText(true);
-                console.log(inValidText ,"Invalid input, please try again!");
+                setModalVisible(true);
             }
         })
-        .catch((error) => console.error(error));
+        .catch((error) => console.error(error))
+        .finally(()=> setLoading(false));
     }
 
-    const getAPI = async (arg) => {
+    const getAPI = (arg) => {
+        setLoad(!load)
         fetchingCity_api(arg);
     }
 
@@ -39,6 +45,26 @@ export default function SearchCity(props) {
                 <Text style={styles.text}>SEARCH BY CITY</Text>
                 <TextButton placeholder="Enter a city" onChangeText={textValue=> setTextInput(textValue)} value={textInput}/>
                 <SearchButton onPress={()=> getAPI(textInput)}/>
+                <View>
+                    {load && <ActivityIndicator size='large' color="#000000" style={styles.isLoading}/>}
+                </View>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                        setModalVisible(!modalVisible);
+                    }}
+                >
+                    <View style={styles.conatiner}>
+                        <View style={styles.modalView}>
+                            <Text style={styles.modalText}>Invalid input, please try again.</Text>
+                            <Pressable style={[styles.button, styles.buttonClose]} onPress={() => setModalVisible(!modalVisible)}>
+                                <Text style={styles.textStyle}>Close</Text>
+                            </Pressable>
+                        </View>
+                    </View>
+                </Modal>   
             </View>
         </>
     );
@@ -46,17 +72,61 @@ export default function SearchCity(props) {
 const styles = StyleSheet.create({
     conatiner:{
         flex: 1, 
-        justifyContent: "flex-start",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
     },
     text: {
         justifyContent: "center",
         alignItems: "center",
         textAlign: "center",
-        fontSize: 40,
+        fontSize: 30,
         marginBottom: "5%",
         color: colors.black,
         fontWeight: "bold",
         marginTop: "30%",
         marginBottom: "10%",
+    },
+    isLoading:{
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: "15%",
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 35,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2
+    },
+    buttonOpen: {
+        backgroundColor: "#F194FF",
+    },
+    buttonClose: {
+        backgroundColor: colors.primary,
+    },
+    textStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+    },
+    modalText: {
+        marginBottom: 15,
+        textAlign: "center",
+        fontWeight: "bold",
+        fontSize: 17,
     }
 });

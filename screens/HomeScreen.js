@@ -17,6 +17,7 @@ export default function HomeScreen({navigation}) {
     <>
       <View style={styles.container}>
         <Text style={styles.text}>CityPop</Text>
+        
         <AppButton
           title="SEARCH BY CITY"
           onPress={nagivateHandler_City}
