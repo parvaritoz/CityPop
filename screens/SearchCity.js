@@ -5,12 +5,13 @@ import BackButton from '../components/BackButton';
 import colors from '../config/colors';
 import SearchButton from '../components/SearchButton';
 import LoadingIndicator from '../components/LoadingIndicator';
+import CityPopulation from './CityPopulation';
 
-export default function SearchCity(props) {
+export default function SearchCity({navigation}) {
 
-    const [textInput, setTextInput] = useState('');
     const [inValidText, setInvalidText] = useState(false);
     const [isLoading, setLoading] = useState(true);
+    const [textInput, setTextInput] = useState('');
     const [load, setLoad] = useState(false);
 
     const [modalVisible, setModalVisible] = useState(false);
@@ -23,7 +24,7 @@ export default function SearchCity(props) {
         .then((response) => {
             setLoad(false);
             if(response.totalResultsCount > 0 && arg != ''){
-               console.log(response.geonames[0].population);
+                console.log("Population: " + response.geonames[0].population + ", City: " + response.geonames[0].toponymName);
             }
             else{
                 setInvalidText(true);
@@ -34,7 +35,7 @@ export default function SearchCity(props) {
         .finally(()=> setLoading(false));
     }
 
-    const getAPI = (arg) => {
+    const getData = (arg) => {
         setLoad(!load)
         fetchingCity_api(arg);
     }
@@ -45,7 +46,7 @@ export default function SearchCity(props) {
                 {/*<BackButton/>*/}
                 <Text style={styles.text}>SEARCH BY CITY</Text>
                 <TextButton placeholder="Enter a city" onChangeText={textValue=> setTextInput(textValue)} value={textInput}/>
-                <SearchButton onPress={()=> getAPI(textInput)}/>
+                <SearchButton onPress={()=> getData(textInput)}/>
                 <View>
                     {load && <LoadingIndicator/>}
                 </View>

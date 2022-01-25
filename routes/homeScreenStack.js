@@ -4,29 +4,35 @@ import {createAppContainer} from 'react-navigation';
 import HomeScreen from '../screens/HomeScreen';
 import SearchCity from '../screens/SearchCity';
 import SearchCountry from '../screens/SearchCountry';
-
+import CityPopulation from '../screens/CityPopulation';
 
 const screens = {
     HomeScreen: {
         screen: HomeScreen,
-        option: screenOptions,
+        navigationOptions: {
+            title: '',
+            headerShown: false,
+        }
     },
     City: {
         screen: SearchCity,
-        option: screenOptions,
+        navigationOptions: {
+            title: 'CityPop',
+        }
     }, 
     Country: {
         screen: SearchCountry,
-        option: screenOptions,
-    }
+        navigationOptions: {
+            title: 'CityPop',
+        }
+    },
+    CityPopulation: {
+        screen: CityPopulation,
+        navigationOptions: {
+            title: 'Search by city',
+        }
+    },
 }
-
-const screenOptions = ({ navigation }) => ({
-    headerBackTitle: "CityPop",
-    headerTransparent: true,
-    titleShown: false,
-    title: '',
-});
 
 const HomeStack = createStackNavigator(screens);
 
