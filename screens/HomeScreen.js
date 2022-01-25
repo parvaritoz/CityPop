@@ -15,12 +15,8 @@ export default function HomeScreen({ navigation }) {
     <>
       <View style={styles.container}>
         <Text style={styles.text}>CityPop</Text>
-
         <AppButton title="SEARCH BY CITY" onPress={nagivateHandler_City} />
-        <AppButton
-          title="SEARCH BY COUNTRY"
-          onPress={nagivateHandler_Country}
-        />
+        <AppButton title="SEARCH BY COUNTRY" onPress={nagivateHandler_Country}/>
       </View>
     </>
   );
@@ -30,16 +26,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
+    justifyContent: "center",
     backgroundColor: colors.plantinum,
   },
   text: {
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    fontSize: 40,
+    fontSize: 50,
     color: colors.onyx,
     fontWeight: "bold",
-    marginTop: "30%",
-    marginBottom: "20%",
+    marginBottom: "5%",
   },
 });

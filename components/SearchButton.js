@@ -8,7 +8,7 @@ export default function SearchButton({ onPress}) {
         <>
             <View style={styles.container}>
                 <TouchableOpacity style = {styles.button} onPress={onPress}>
-                    <AntDesign name='search1' size={24} style={styles.searchIcon}/>
+                    <AntDesign name='search1' size={34} style={styles.searchIcon}/>
                 </TouchableOpacity>
             </View>
         </>
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         marginTop: "10%",
     },
     button: {
-        backgroundColor: colors.black,
+        backgroundColor: colors.black, 
         borderRadius: 50,
         width: 60,
         height: 60,
@@ -34,6 +34,5 @@ const styles = StyleSheet.create({
     },
     searchIcon: {
         color: colors.white,
-    }
-   
+    } 
 })

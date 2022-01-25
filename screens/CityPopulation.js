@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
   },
   text: {
     justifyContent: "center",
@@ -30,8 +29,9 @@ const styles = StyleSheet.create({
     marginBottom: "5%",
   },
   cityText: {
-    fontSize: 30,
+    fontSize: 40,
     fontWeight: "bold",
     marginBottom: "5%",
+    color: colors.black,
   },
 });

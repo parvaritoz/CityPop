@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   button: {
-    backgroundColor: colors.onyx,
+    backgroundColor: colors.white,
     borderColor: "#00ffff",
     borderRadius: 15,
     borderColor: "red",
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     margin: "2%",
   },
   text: {
-    color: colors.white,
+    color: colors.black,
     fontWeight: "bold",
     fontSize: 18,
     textTransform: "uppercase",

@@ -16,7 +16,6 @@ export default function SearchCity({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
 
   function fetchingCity_api(arg) {
-    setTimeout(3000);
     fetch(
       "http://api.geonames.org/searchJSON?name=" +
         arg +
@@ -83,7 +82,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
+
   },
   text: {
     justifyContent: "center",
@@ -96,15 +95,10 @@ const styles = StyleSheet.create({
     marginTop: "30%",
     marginBottom: "10%",
   },
-  isLoading: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: "15%",
-  },
   modalView: {
     margin: 20,
-    backgroundColor: "white",
-    borderRadius: 35,
+    backgroundColor: colors.white,
+    borderRadius: 20,
     padding: 35,
     alignItems: "center",
     shadowColor: "#000",
@@ -117,18 +111,15 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   button: {
-    borderRadius: 20,
+    borderRadius: 12,
     padding: 10,
     elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
   },
   buttonClose: {
     backgroundColor: colors.fire_opal,
   },
   textStyle: {
-    color: "white",
+    color: colors.white,
     fontWeight: "bold",
     textAlign: "center",
   },
