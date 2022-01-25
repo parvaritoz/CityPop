@@ -10,17 +10,16 @@ export default function AppButton({ title, onPress }) {
         <Text style={styles.text}>{title}</Text>
       </TouchableOpacity>
     </View>
-   
   );
 }
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     justifyContent: "center",
     alignItems: "center",
   },
   button: {
-    backgroundColor: colors.black,
+    backgroundColor: colors.onyx,
     borderColor: "#00ffff",
     borderRadius: 15,
     borderColor: "red",

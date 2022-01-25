@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F194FF",
   },
   buttonClose: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.fire_opal,
   },
   textStyle: {
     color: "white",
