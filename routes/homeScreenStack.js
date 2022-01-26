@@ -5,7 +5,7 @@ import HomeScreen from "../screens/HomeScreen";
 import SearchCity from "../screens/SearchCity";
 import SearchCountry from "../screens/SearchCountry";
 import CityPopulation from "../screens/CityPopulation";
-import colors from "../config/colors";
+import Cities from "../screens/Cities";
 
 const screens = {
   HomeScreen: {
@@ -33,6 +33,12 @@ const screens = {
       title: "Search By City",
     },
   },
+  Cities: {
+    screen: Cities,
+    navigationOptions: {
+      title: "Search By Country",
+    },
+  }
 };
 
 const HomeStack = createStackNavigator(screens);

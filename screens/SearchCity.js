@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Text, StyleSheet, View, Modal, Pressable } from "react-native";
 import TextButton from "../components/TextButton";
-import BackButton from "../components/BackButton";
 import colors from "../config/colors";
 import SearchButton from "../components/SearchButton";
 import LoadingIndicator from "../components/LoadingIndicator";
@@ -15,29 +14,25 @@ export default function SearchCity({ navigation }) {
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  function fetchingCity_api(arg) {
-    fetch(
-      "http://api.geonames.org/searchJSON?name=" +
-        arg +
-        "&featureClass=P&maxRows=1&username=weknowit"
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        setLoad(false);
-        if (response.totalResultsCount > 0 && arg != "") {
-          navigation.navigate("CityPopulation", response.geonames[0]);
-        } else {
-          setInvalidText(true);
-          setModalVisible(true);
-        }
-      })
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
+  function fetchingCity(arg) {
+    fetch("http://api.geonames.org/searchJSON?name=" + arg + "&featureClass=P&maxRows=1&username=weknowit")
+    .then((response) => response.json())
+    .then((response) => {
+      setLoad(false);
+      if (response.totalResultsCount > 0 && arg != "") {
+        navigation.navigate("CityPopulation", response.geonames[0]);
+      } else {
+        setInvalidText(true);
+        setModalVisible(true);
+      }
+    })
+    .catch((error) => console.error(error))
+    .finally(() => setLoading(false));
   }
 
-  const getData = (arg) => {
+  const getFinalData = (arg) => {
     setLoad(!load);
-    fetchingCity_api(arg);
+    fetchingCity(arg);
   };
 
   return (
@@ -49,7 +44,7 @@ export default function SearchCity({ navigation }) {
           onChangeText={(textValue) => setTextInput(textValue)}
           value={textInput}
         />
-        <SearchButton onPress={() => getData(textInput)} />
+        <SearchButton onPress={() => getFinalData(textInput)} />
         <View>{load && <LoadingIndicator />}</View>
         <Modal
           animationType="slide"
@@ -62,7 +57,7 @@ export default function SearchCity({ navigation }) {
           <View style={styles.container}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>
-                Invalid input, please try again.
+                Couldn't find, please try again.
               </Text>
               <Pressable
                 style={[styles.button, styles.buttonClose]}

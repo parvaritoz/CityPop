@@ -1,13 +1,13 @@
 import React from "react";
 import { Text, StyleSheet, View, Modal, Pressable } from "react-native";
 import { useState } from "react/cjs/react.development";
-import BackButton from "../components/BackButton";
 import LoadingIndicator from "../components/LoadingIndicator";
 import SearchButton from "../components/SearchButton";
 import TextButton from "../components/TextButton";
 import colors from "../config/colors";
 
-export default function SearchCountry(props) {
+export default function SearchCountry({navigation}) {
+ 
   const [textInput, setTextInput] = useState("");
   const [inValidText, setInvalidText] = useState(false);
   const [isLoading, setLoading] = useState(true);
@@ -15,29 +15,41 @@ export default function SearchCountry(props) {
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  function fetchingCountry_api(arg) {
-    fetch(
-      "http://api.geonames.org/searchJSON?name=" +
-        arg +
-        "&featureClass=A&orderby=population&maxRows=1&username=weknowit"
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        setLoad(false);
-        if (response.totalResultsCount > 0 && arg != "") {
-          console.log(response.geonames[0]);
-        } else {
+  function fetching_CountryCode(arg) {
+    fetch('http://api.geonames.org/searchJSON?name=' + arg +'&maxRows=1&username=weknowit')
+    .then((response) => response.json())
+    .then((response) => {
+      setLoad(false)
+        if (response.totalResultsCount > 0 && arg != '') {
+          fetching_BiggetsCities(response.geonames[0].countryCode)
+        } 
+        else {
           setInvalidText(true);
-          setModalVisible(true);
+          setModalVisible(true);            
         }
-      })
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
+    }).catch((error) => console.error(error))
   }
 
-  const getAPI = async (arg) => {
+  function fetching_BiggetsCities(arg) {
+    fetch('http://api.geonames.org/searchJSON?country=' + arg + '&featureClass=P&orderby=population&maxRows=3&username=weknowit')
+    .then((response) => response.json())
+    .then((response) => {
+      setLoad(false);
+      if (response.totalResultsCount > 0 && arg != '') {
+        navigation.navigate("Cities", response.geonames);
+        {/*console.log(response.geonames)*/}
+      }
+      else{
+        setInvalidText(true);
+        setModalVisible(true);
+      }
+    }).catch((error) => console.error(error))
+    .finally(()=> setLoading(false));
+  }
+
+  const getFinalData = async (arg) => {
     setLoad(!load);
-    fetchingCountry_api(arg);
+    fetching_CountryCode(arg);
   };
 
   return (
@@ -49,8 +61,9 @@ export default function SearchCountry(props) {
           onChangeText={(textValue) => setTextInput(textValue)}
           value={textInput}
         />
-        <SearchButton onPress={() => getAPI(textInput)} />
-        <View>{load && <LoadingIndicator />}</View>
+        <SearchButton onPress={() => getFinalData(textInput)} />
+        <View>{load && <LoadingIndicator/>}</View>
+        
         <Modal
           animationType="slide"
           transparent={true}
@@ -62,7 +75,7 @@ export default function SearchCountry(props) {
           <View style={styles.container}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>
-                Invalid input, please try again.
+              Couldn't find, please try again.
               </Text>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
