@@ -17,9 +17,6 @@ export default function SearchCity({ navigation }) {
   const [load, setLoad] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
 
-  //Chech spelling using regnex
-  const spellingCheck = /^([a-zA-Z]+(?:. |-| |'))*[a-zA-Z]*$/;
-
   /**
    * This function fetches the data using cityName.
    * The data is later used to get the population of the chosen city.
@@ -34,7 +31,7 @@ export default function SearchCity({ navigation }) {
       .then((response) => response.json())
       .then((response) => {
         setLoad(false);
-        if (cityName != "" && cityName.match(spellingCheck)) {
+        if (cityName != "") {
           navigation.navigate("CityPopulation", response.geonames[0]);
         } else {
           setInvalidText(true);
