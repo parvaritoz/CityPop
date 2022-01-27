@@ -17,6 +17,7 @@ export default function SearchCity({ navigation }) {
   const [load, setLoad] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
 
+  //Chech spelling using regnex
   const spellingCheck = /^([a-zA-Z]+(?:. |-| |'))*[a-zA-Z]*$/;
 
   /**
