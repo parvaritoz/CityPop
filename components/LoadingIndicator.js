@@ -1,6 +1,13 @@
+/**
+ * @author Reza Parvar, 2021-01-28
+ * @version 1.0.0
+ */
 import React from "react";
 import { View, ActivityIndicator, StyleSheet, Text } from "react-native";
 
+/**
+ * A component that is used when fetching data.
+ */
 export default function LoadingIndicator() {
   return (
     <View>
@@ -10,6 +17,9 @@ export default function LoadingIndicator() {
   );
 }
 
+/**
+ * Styling the component using StyleSheet. 
+ */
 const styles = StyleSheet.create({
   loading: {
     justifyContent: "center",

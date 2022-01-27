@@ -1,25 +1,33 @@
+/**
+ * @author Reza Parvar, 2022-01-28
+ * @version 1.0.0
+ */
+
 import React, { useState } from "react";
 import { Text, StyleSheet, View, Modal, Pressable } from "react-native";
 import TextButton from "../components/TextButton";
 import colors from "../config/colors";
 import SearchButton from "../components/SearchButton";
 import LoadingIndicator from "../components/LoadingIndicator";
-import CityPopulation from "./CityPopulation";
 
 export default function SearchCity({ navigation }) {
   const [inValidText, setInvalidText] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [textInput, setTextInput] = useState("");
   const [load, setLoad] = useState(false);
-
   const [modalVisible, setModalVisible] = useState(false);
 
-  function fetchingCity(arg) {
-    fetch("http://api.geonames.org/searchJSON?name=" + arg + "&featureClass=P&maxRows=1&username=weknowit")
+  /**
+   * This function fetches the data using cityName. 
+   * The data is later used to get the population of the chosen city. 
+   * @param cityName: Name of the chosen city. 
+   */
+  function fetchingCity(cityName) {
+    fetch("http://api.geonames.org/searchJSON?name=" + cityName + "&featureClass=P&maxRows=1&username=weknowit")
     .then((response) => response.json())
     .then((response) => {
       setLoad(false);
-      if (response.totalResultsCount > 0 && arg != "") {
+      if (response.totalResultsCount > 0 && cityName != "") {
         navigation.navigate("CityPopulation", response.geonames[0]);
       } else {
         setInvalidText(true);
@@ -30,6 +38,11 @@ export default function SearchCity({ navigation }) {
     .finally(() => setLoading(false));
   }
 
+  /**
+   * This function handles the loadingIndicator and
+   * fetches the final data to present to the use. 
+   * @param arg: Represents the text the user writes. 
+   */
   const getFinalData = (arg) => {
     setLoad(!load);
     fetchingCity(arg);
@@ -72,6 +85,10 @@ export default function SearchCity({ navigation }) {
     </>
   );
 }
+
+/**
+ * Styling the screen using StyleSheet. 
+ */
 const styles = StyleSheet.create({
   container: {
     flex: 1,

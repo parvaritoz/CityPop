@@ -1,8 +1,17 @@
+/**
+ * @author Reza Parvar, 2021-01-28
+ * @version 1.0.0
+ */
+
 import React from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
-
 import colors from "../config/colors";
 
+/**
+ * A component that is used on the home screen.This component contains
+ * a button and a text, which later is used to navigate the app.
+ *
+ */
 export default function AppButton({ title, onPress }) {
   return (
     <View style={styles.container}>
@@ -13,6 +22,9 @@ export default function AppButton({ title, onPress }) {
   );
 }
 
+/**
+ * Styling the component using StyleSheet. 
+ */
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",

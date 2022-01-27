@@ -1,9 +1,14 @@
+/**
+ * @author Reza Parvar, 2022-01-28
+ * @version 1.0.0
+ */
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import AppButton from "../components/AppButton";
 import colors from "../config/colors";
 
 export default function HomeScreen({ navigation }) {
+  
   const nagivateHandler_City = () => {
     navigation.navigate("City");
   };
@@ -22,6 +27,9 @@ export default function HomeScreen({ navigation }) {
   );
 }
 
+/**
+ * Styling the screen using StyleSheet. 
+ */
 const styles = StyleSheet.create({
   container: {
     flex: 1,

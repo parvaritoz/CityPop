@@ -1,8 +1,18 @@
+/**
+ * @author Reza Parvar, 2021-01-28
+ * @version 1.0.0
+ */
+
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import colors from '../config/colors';
 import {AntDesign} from '@expo/vector-icons';
 
+
+/**
+ * A component that is used on different screens. This component is a button
+ * with a search Icon, that allows the user to search by clicking on it. 
+ */
 export default function SearchButton({ onPress}) {
     return (
         <>
@@ -15,6 +25,9 @@ export default function SearchButton({ onPress}) {
     );
 }
 
+/**
+ * Styling the component using StyleSheet. 
+ */
 const styles = StyleSheet.create({
     container: {
         flex: 1,

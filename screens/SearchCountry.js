@@ -1,3 +1,8 @@
+/**
+ * @author Reza Parvar, 2021-01-28
+ * @version 1.0.0
+ */
+
 import React from "react";
 import { Text, StyleSheet, View, Modal, Pressable } from "react-native";
 import { useState } from "react/cjs/react.development";
@@ -12,15 +17,19 @@ export default function SearchCountry({navigation}) {
   const [inValidText, setInvalidText] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [load, setLoad] = useState(false);
-
   const [modalVisible, setModalVisible] = useState(false);
 
-  function fetching_CountryCode(arg) {
-    fetch('http://api.geonames.org/searchJSON?name=' + arg +'&maxRows=1&username=weknowit')
+  /**
+   * This function fetches the data using name of a chosen country. 
+   * The data, countryCode, is late used to get the biggest cities in a chosen country. 
+   * @param countryName: Name of the country 
+   */
+  function fetching_CountryCode(countryName) {
+    fetch('http://api.geonames.org/searchJSON?name=' + countryName + '&featureClass=A&maxRows=1&username=weknowit')
     .then((response) => response.json())
     .then((response) => {
       setLoad(false)
-        if (response.totalResultsCount > 0 && arg != '') {
+        if (response.totalResultsCount > 0 && countryName != '') {
           fetching_BiggetsCities(response.geonames[0].countryCode)
         } 
         else {
@@ -30,14 +39,18 @@ export default function SearchCountry({navigation}) {
     }).catch((error) => console.error(error))
   }
 
-  function fetching_BiggetsCities(arg) {
-    fetch('http://api.geonames.org/searchJSON?country=' + arg + '&featureClass=P&orderby=population&maxRows=3&username=weknowit')
+  /**
+   * This function fetches the data using countryCode of a chosen country.
+   * This data is used to get the biggiest cities in a chosen country. 
+   * @param countryCode: CountryCode of the chosen country. 
+   */
+  function fetching_BiggetsCities(countryCode) {
+    fetch('http://api.geonames.org/searchJSON?country=' + countryCode + '&featureClass=P&orderby=population&maxRows=3&username=weknowit')
     .then((response) => response.json())
     .then((response) => {
       setLoad(false);
-      if (response.totalResultsCount > 0 && arg != '') {
+      if (response.totalResultsCount > 0 && countryCode != ''){
         navigation.navigate("Cities", response.geonames);
-        {/*console.log(response.geonames)*/}
       }
       else{
         setInvalidText(true);
@@ -47,7 +60,12 @@ export default function SearchCountry({navigation}) {
     .finally(()=> setLoading(false));
   }
 
-  const getFinalData = async (arg) => {
+  /**
+   * This function handles the loadingIndicator and
+   * fetches the final data to present to the use. 
+   * @param arg: Represents the text the user writes. 
+   */
+  const getFinalData = (arg) => {
     setLoad(!load);
     fetching_CountryCode(arg);
   };
@@ -90,6 +108,10 @@ export default function SearchCountry({navigation}) {
     </>
   );
 }
+
+/**
+ * Styling the screen using StyleSheet. 
+ */
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -1,3 +1,7 @@
+/**
+ * @author Reza Parvar, 2022-01-28
+ * @version 1.0.0
+ */
 export default {
   primary: "#fc5c65",
   secondary: "#4ecdc4",

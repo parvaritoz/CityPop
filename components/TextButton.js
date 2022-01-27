@@ -1,7 +1,15 @@
+/**
+ * @author Reza Parvar, 2022-01-28
+ * @version 1.0.0
+ */
 import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import colors from "../config/colors";
 
+/**
+ * A component that is used on different screens. This component contains a textfield,
+ * which gives the user the opportunity to write any city/country. 
+ */
 export default function TextButton({ placeholder, onChangeText, value }) {
   return (
     <View style={styles.conatiner}>
@@ -15,6 +23,9 @@ export default function TextButton({ placeholder, onChangeText, value }) {
   );
 }
 
+/**
+ * Styling the component using StyleSheet. 
+ */
 const styles = StyleSheet.create({
   conatiner: {
     justifyContent: "center",

@@ -1,8 +1,9 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import SearchCity from "./screens/SearchCity";
+/**
+ * @author Reza Parvar, 2021-01-28
+ * @version 1.0.0
+ */
+import React from 'react';
 import AppNavigation from './routes/homeScreenStack';
-
 
 export default function App() {
   return (

@@ -1,3 +1,7 @@
+/**
+ * @author Reza Parvar, 2022-01-28
+ * @version 1.0.0
+ */
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import ShowPopulation from "../components/ShowPopulation";
@@ -13,6 +17,9 @@ export default function CityPopulation({ navigation }) {
   );
 }
 
+/**
+ * Styling the screen using StyleSheet. 
+ */
 const styles = StyleSheet.create({
   container: {
     flex: 1,

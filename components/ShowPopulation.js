@@ -1,7 +1,17 @@
+/**
+ * @author Reza Parvar, 2021-01-28
+ * @version 1.0.0
+ */
+
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import colors from '../config/colors';
 
+/**
+ * A component that is used on different screens. 
+ * This component is used to present population of a chosen city
+ * to the user.
+ */
 export default function ShowPopulation({title}){
     return (
             <View style={styles.container}>
@@ -13,6 +23,9 @@ export default function ShowPopulation({title}){
     );
 }
 
+/**
+ * Styling the component using StyleSheet. 
+ */
 const styles = StyleSheet.create({
     container: {
         justifyContent: "center",
