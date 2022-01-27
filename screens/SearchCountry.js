@@ -11,59 +11,68 @@ import SearchButton from "../components/SearchButton";
 import TextButton from "../components/TextButton";
 import colors from "../config/colors";
 
-export default function SearchCountry({navigation}) {
- 
+export default function SearchCountry({ navigation }) {
   const [textInput, setTextInput] = useState("");
   const [inValidText, setInvalidText] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [load, setLoad] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
 
+  const spellingCheck = /^([a-zA-Z]+(?:. |-| |'))*[a-zA-Z]*$/;
+
   /**
-   * This function fetches the data using name of a chosen country. 
-   * The data, countryCode, is late used to get the biggest cities in a chosen country. 
-   * @param countryName: Name of the country 
+   * This function fetches the data using name of a chosen country.
+   * The data, countryCode, is late used to get the biggest cities in a chosen country.
+   * @param countryName: Name of the country
    */
   function fetching_CountryCode(countryName) {
-    fetch('http://api.geonames.org/searchJSON?name=' + countryName + '&featureClass=A&maxRows=1&username=weknowit')
-    .then((response) => response.json())
-    .then((response) => {
-      setLoad(false)
-        if (response.totalResultsCount > 0 && countryName != '') {
-          fetching_BiggetsCities(response.geonames[0].countryCode)
-        } 
-        else {
+    fetch(
+      "http://api.geonames.org/searchJSON?name=" +
+        countryName +
+        "&featureClass=A&maxRows=1&username=weknowit"
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setLoad(false);
+        if (countryName != "" && countryName.match(spellingCheck)) {
+          fetching_BiggetsCities(response.geonames[0].countryCode);
+        } else {
           setInvalidText(true);
-          setModalVisible(true);            
+          setModalVisible(true);
         }
-    }).catch((error) => console.error(error))
+      })
+      .catch((error) => console.error(error));
   }
 
   /**
    * This function fetches the data using countryCode of a chosen country.
-   * This data is used to get the biggiest cities in a chosen country. 
-   * @param countryCode: CountryCode of the chosen country. 
+   * This data is used to get the biggiest cities in a chosen country.
+   * @param countryCode: CountryCode of the chosen country.
    */
   function fetching_BiggetsCities(countryCode) {
-    fetch('http://api.geonames.org/searchJSON?country=' + countryCode + '&featureClass=P&orderby=population&maxRows=3&username=weknowit')
-    .then((response) => response.json())
-    .then((response) => {
-      setLoad(false);
-      if (response.totalResultsCount > 0 && countryCode != ''){
-        navigation.navigate("Cities", response.geonames);
-      }
-      else{
-        setInvalidText(true);
-        setModalVisible(true);
-      }
-    }).catch((error) => console.error(error))
-    .finally(()=> setLoading(false));
+    fetch(
+      "http://api.geonames.org/searchJSON?country=" +
+        countryCode +
+        "&featureClass=P&orderby=population&maxRows=3&username=weknowit"
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setLoad(false);
+        if (countryCode != "" && countryCode.match(spellingCheck)) {
+          navigation.navigate("Cities", response.geonames);
+        } else {
+          setInvalidText(true);
+          setModalVisible(true);
+        }
+      })
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
   }
 
   /**
    * This function handles the loadingIndicator and
-   * fetches the final data to present to the use. 
-   * @param arg: Represents the text the user writes. 
+   * fetches the final data to present to the use.
+   * @param arg: Represents the text the user writes.
    */
   const getFinalData = (arg) => {
     setLoad(!load);
@@ -80,8 +89,8 @@ export default function SearchCountry({navigation}) {
           value={textInput}
         />
         <SearchButton onPress={() => getFinalData(textInput)} />
-        <View>{load && <LoadingIndicator/>}</View>
-        
+        <View>{load && <LoadingIndicator />}</View>
+
         <Modal
           animationType="slide"
           transparent={true}
@@ -93,7 +102,7 @@ export default function SearchCountry({navigation}) {
           <View style={styles.container}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>
-              Couldn't find, please try again.
+                Couldn't find, please try again.
               </Text>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
@@ -110,7 +119,7 @@ export default function SearchCountry({navigation}) {
 }
 
 /**
- * Styling the screen using StyleSheet. 
+ * Styling the screen using StyleSheet.
  */
 const styles = StyleSheet.create({
   container: {

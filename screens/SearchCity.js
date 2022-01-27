@@ -17,31 +17,37 @@ export default function SearchCity({ navigation }) {
   const [load, setLoad] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
 
+  const spellingCheck = /^([a-zA-Z]+(?:. |-| |'))*[a-zA-Z]*$/;
+
   /**
-   * This function fetches the data using cityName. 
-   * The data is later used to get the population of the chosen city. 
-   * @param cityName: Name of the chosen city. 
+   * This function fetches the data using cityName.
+   * The data is later used to get the population of the chosen city.
+   * @param cityName: Name of the chosen city.
    */
   function fetchingCity(cityName) {
-    fetch("http://api.geonames.org/searchJSON?name=" + cityName + "&featureClass=P&maxRows=1&username=weknowit")
-    .then((response) => response.json())
-    .then((response) => {
-      setLoad(false);
-      if (response.totalResultsCount > 0 && cityName != "") {
-        navigation.navigate("CityPopulation", response.geonames[0]);
-      } else {
-        setInvalidText(true);
-        setModalVisible(true);
-      }
-    })
-    .catch((error) => console.error(error))
-    .finally(() => setLoading(false));
+    fetch(
+      "http://api.geonames.org/searchJSON?name=" +
+        cityName +
+        "&featureClass=P&maxRows=1&username=weknowit"
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setLoad(false);
+        if (cityName != "" && cityName.match(spellingCheck)) {
+          navigation.navigate("CityPopulation", response.geonames[0]);
+        } else {
+          setInvalidText(true);
+          setModalVisible(true);
+        }
+      })
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
   }
 
   /**
    * This function handles the loadingIndicator and
-   * fetches the final data to present to the use. 
-   * @param arg: Represents the text the user writes. 
+   * fetches the final data to present to the use.
+   * @param arg: Represents the text the user writes.
    */
   const getFinalData = (arg) => {
     setLoad(!load);
@@ -87,14 +93,13 @@ export default function SearchCity({ navigation }) {
 }
 
 /**
- * Styling the screen using StyleSheet. 
+ * Styling the screen using StyleSheet.
  */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-
   },
   text: {
     justifyContent: "center",
