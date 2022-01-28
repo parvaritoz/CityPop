@@ -8,7 +8,7 @@ import colors from "../config/colors";
 
 /**
  * A component that is used on different screens. This component contains a textfield,
- * which gives the user the opportunity to write any city/country. 
+ * which gives the user the opportunity to write any city/country.
  */
 export default function TextButton({ placeholder, onChangeText, value }) {
   return (
@@ -24,7 +24,7 @@ export default function TextButton({ placeholder, onChangeText, value }) {
 }
 
 /**
- * Styling the component using StyleSheet. 
+ * Styling the component using StyleSheet.
  */
 const styles = StyleSheet.create({
   conatiner: {
@@ -34,11 +34,11 @@ const styles = StyleSheet.create({
   },
   textInput: {
     margin: "2%",
-    borderWidth: 3,
+    borderWidth: 2.5,
     padding: 10,
     borderRadius: 15,
     width: 300,
-    borderColor: colors.black,
+    borderColor: colors.onyx,
     fontSize: 25,
   },
 });

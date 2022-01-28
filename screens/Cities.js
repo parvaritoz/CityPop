@@ -13,8 +13,8 @@ export default function Cities({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.cityHeader}>Biggest cities in</Text>
       <Text style={styles.cityText}>{data[0].countryName}</Text>
-
       <CityButton
         title={data[0].toponymName}
         onPress={() => navigation.navigate("CityPopulation", data[0])}
@@ -32,7 +32,7 @@ export default function Cities({ navigation }) {
 }
 
 /**
- * Styling the screen using StyleSheet. 
+ * Styling the screen using StyleSheet.
  */
 const styles = StyleSheet.create({
   container: {
@@ -43,6 +43,12 @@ const styles = StyleSheet.create({
   cityText: {
     fontSize: 40,
     fontWeight: "bold",
+    marginBottom: "5%",
+    color: colors.black,
+    fontStyle: "italic",
+  },
+  cityHeader: {
+    fontSize: 30,
     marginBottom: "5%",
     color: colors.black,
   },

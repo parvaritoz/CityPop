@@ -18,7 +18,7 @@ export default function CityPopulation({ navigation }) {
 }
 
 /**
- * Styling the screen using StyleSheet. 
+ * Styling the screen using StyleSheet.
  */
 const styles = StyleSheet.create({
   container: {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     textAlign: "center",
     fontSize: 30,
-    color: colors.black,
+    color: colors.onyx,
     fontWeight: "bold",
     marginBottom: "5%",
   },
@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "bold",
     marginBottom: "5%",
-    color: colors.black,
+    color: colors.onyx,
   },
 });

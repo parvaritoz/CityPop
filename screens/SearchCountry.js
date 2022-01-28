@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 30,
     marginBottom: "5%",
-    color: colors.black,
+    color: colors.onyx,
     fontWeight: "bold",
     marginTop: "30%",
     marginBottom: "10%",

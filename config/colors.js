@@ -3,7 +3,7 @@
  * @version 1.0.0
  */
 export default {
-  primary: "#fc5c65",
+  primary: "#FFE882",
   secondary: "#4ecdc4",
   black: "#000",
   white: "#fff",

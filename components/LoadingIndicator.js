@@ -18,7 +18,7 @@ export default function LoadingIndicator() {
 }
 
 /**
- * Styling the component using StyleSheet. 
+ * Styling the component using StyleSheet.
  */
 const styles = StyleSheet.create({
   loading: {

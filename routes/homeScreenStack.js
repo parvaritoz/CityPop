@@ -9,9 +9,10 @@ import SearchCity from "../screens/SearchCity";
 import SearchCountry from "../screens/SearchCountry";
 import CityPopulation from "../screens/CityPopulation";
 import Cities from "../screens/Cities";
+import colors from "../config/colors";
 
 /**
- * Handling the navigation of the application using StackNavigator. 
+ * Handling the navigation of the application using StackNavigator.
  */
 const screens = {
   HomeScreen: {
@@ -24,27 +25,47 @@ const screens = {
   City: {
     screen: SearchCity,
     navigationOptions: {
-      title: "CityPop",
+      title: "Home",
+      headerTintColor: colors.black,
+      headerStyle: {
+        backgroundColor: colors.primary,
+        borderBottomWidth: 0,
+      },
     },
   },
   Country: {
     screen: SearchCountry,
     navigationOptions: {
-      title: "CityPop",
+      title: "Home",
+      headerTintColor: colors.black,
+      headerStyle: {
+        backgroundColor: colors.primary,
+        borderBottomWidth: 0,
+      },
     },
   },
   CityPopulation: {
     screen: CityPopulation,
     navigationOptions: {
-      title: "",
+      title: "Back",
+      headerTintColor: colors.black,
+      headerStyle: {
+        backgroundColor: colors.primary,
+        borderBottomWidth: 0,
+      },
     },
   },
   Cities: {
     screen: Cities,
     navigationOptions: {
-      title: "",
+      title: "Back",
+      headerTintColor: colors.black,
+      headerStyle: {
+        backgroundColor: colors.primary,
+        borderBottomWidth: 0,
+      },
     },
-  }
+  },
 };
 
 const HomeStack = createStackNavigator(screens);

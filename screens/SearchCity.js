@@ -24,9 +24,9 @@ export default function SearchCity({ navigation }) {
    */
   function fetchingCity(cityName) {
     fetch(
-      "http://api.geonames.org/searchJSON?name=" +
+      "http://api.geonames.org/searchJSON?q=" +
         cityName +
-        "&featureClass=P&maxRows=1&username=weknowit"
+        "&featureClass=P&style=LONG&cities=cities15000&username=weknowit"
     )
       .then((response) => response.json())
       .then((response) => {
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 30,
     marginBottom: "5%",
-    color: colors.black,
+    color: colors.onyx,
     fontWeight: "bold",
     marginTop: "30%",
     marginBottom: "10%",

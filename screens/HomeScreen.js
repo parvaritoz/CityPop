@@ -8,7 +8,6 @@ import AppButton from "../components/AppButton";
 import colors from "../config/colors";
 
 export default function HomeScreen({ navigation }) {
-  
   const nagivateHandler_City = () => {
     navigation.navigate("City");
   };
@@ -21,21 +20,24 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.container}>
         <Text style={styles.text}>CityPop</Text>
         <AppButton title="SEARCH BY CITY" onPress={nagivateHandler_City} />
-        <AppButton title="SEARCH BY COUNTRY" onPress={nagivateHandler_Country}/>
+        <AppButton
+          title="SEARCH BY COUNTRY"
+          onPress={nagivateHandler_Country}
+        />
       </View>
     </>
   );
 }
 
 /**
- * Styling the screen using StyleSheet. 
+ * Styling the screen using StyleSheet.
  */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-    backgroundColor: colors.plantinum,
+    backgroundColor: colors.primary,
   },
   text: {
     justifyContent: "center",

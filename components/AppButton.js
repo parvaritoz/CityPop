@@ -23,7 +23,7 @@ export default function AppButton({ title, onPress }) {
 }
 
 /**
- * Styling the component using StyleSheet. 
+ * Styling the component using StyleSheet.
  */
 const styles = StyleSheet.create({
   container: {
@@ -34,16 +34,20 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderColor: "#00ffff",
     borderRadius: 15,
-    borderColor: "red",
     padding: 20,
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
     width: "80%",
     margin: "2%",
+    shadowColor: "rgba(0,0,0, .5)",
+    shadowOffset: { height: 1, width: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 4,
+    elevation: 2,
   },
   text: {
-    color: colors.black,
+    color: colors.onyx,
     fontWeight: "bold",
     fontSize: 18,
     textTransform: "uppercase",
