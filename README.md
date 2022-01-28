@@ -2,7 +2,7 @@
 CityPop is a simple application created in React Native. The application allows the user to search for how many inhabitants a certain city has. The user also has the opportunity to search for a country, and then get the population of the three largest cities for that country.
 
 # Code Style
-This application was made in React Native. It is made up of different components that together build the entire application. These components have different tasks, one component can be e.g. a search button used in various screens. The application contains several screens and by using components, the building is facilitated.
+This application was made in React Native. It is made up of different components that together build the entire application. These components have different tasks, one component can be e.g. a search button used in various screens. The application contains several screens and by using components, the building is facilitated. If you want to change a button that is used in several screens, you do not need to change the button in all screens, which can take some times. By changing the component, it changes in all screens where components are used.  This saves time, less risks of errors and structures the code in a good way.
 
 # Project Setup
 Install Expo for the project and by using the following code, you can create a new expo project:
