@@ -35,7 +35,11 @@ export default function SearchCountry({ navigation }) {
       .then((response) => response.json())
       .then((response) => {
         setLoad(false);
-        if (countryName != "" && countryName.match(spellingCheck)) {
+        if (
+          response.totalResultsCount > 0 &&
+          countryName != "" &&
+          countryName.match(spellingCheck)
+        ) {
           fetching_BiggetsCities(response.geonames[0].countryCode);
         } else {
           setInvalidText(true);
@@ -59,7 +63,11 @@ export default function SearchCountry({ navigation }) {
       .then((response) => response.json())
       .then((response) => {
         setLoad(false);
-        if (countryCode != "" && countryCode.match(spellingCheck)) {
+        if (
+          response.totalResultsCount > 0 &&
+          countryCode != "" &&
+          countryCode.match(spellingCheck)
+        ) {
           navigation.navigate("Cities", response.geonames);
         } else {
           setInvalidText(true);

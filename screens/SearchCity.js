@@ -31,7 +31,7 @@ export default function SearchCity({ navigation }) {
       .then((response) => response.json())
       .then((response) => {
         setLoad(false);
-        if (cityName != "") {
+        if (response.totalResultsCount > 0 && cityName != "") {
           navigation.navigate("CityPopulation", response.geonames[0]);
         } else {
           setInvalidText(true);
